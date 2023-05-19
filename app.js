@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const usersrouter = require("./routes/users.js");
 const flightdetailrouter = require("./routes/flightdetail");
-
+const cardofferrouter = require("./routes/cardoffer");
 const morgan = require("morgan");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
@@ -13,11 +13,7 @@ require("dotenv").config();
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json({ extended: true }));
 app.use(
-  //     cors({
-  //         origin:"*"
-  //     })
   cors({
-    //         origin:"https://vast-dog-boot.cyclic.app/user",
     origin: "http://localhost:3000",
   })
 );
@@ -27,7 +23,7 @@ app.use("/user", usersrouter);
 
 app.use("/flightdetails", flightdetailrouter);
 
-
+app.use("/cardoffer", cardofferrouter);
 
 
 
