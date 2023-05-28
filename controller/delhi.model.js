@@ -1,19 +1,21 @@
 
+
 const mongoose = require ('mongoose')
 const { async } = require('rxjs')
 
-const User = require ('../model/userschema')
+const Delhi = require ('../model/delhischema')
+
 
 // 1. GET/READ for all user method of CRUD
 
-exports.getusers = async (req,res)=>{
+exports.getdelhis = async (req,res)=>{
     try{
-       const user = await User.find()
+        const delhi = await Delhi.find()
 
-       res.status(200).json({
-        msg:"All Users data featched successfully",
-        user: user
-      })
+        res.status(200).json({
+            msg:"delhi data featched successfully",
+            data: delhi
+        })
     }catch(err){
         res.status(501).json({
             msg:"Somethng went wrong",
@@ -23,13 +25,13 @@ exports.getusers = async (req,res)=>{
 }
 
 // 2. GET/READ for single user method of CRUD
-exports.getuser = async (req,res)=>{
+exports.getdelhi = async (req,res)=>{
     try{
-       const user= await User.findById(req.params.productid)
+       const delhi= await Delhi.findById(req.params.productid)
 
        res.status(200).json({
-        msg:"Single User data featched successfully",
-        user: user
+        msg:"Single data featched successfully",
+        data : delhi
      })
     }catch(err){
         res.status(501).json({
@@ -41,24 +43,21 @@ exports.getuser = async (req,res)=>{
 
 
 // 3. POST/CREAT method of CRUD
-exports.createuser = async (req,res) =>{
+exports.createdelhi = async (req,res) =>{
     try{
-        const user = new User ({
+        const delhi = new Delhi ({
             _id : new mongoose.Types.ObjectId(),
-            firstname : req.body.firstname,
-            lastname : req.body.lastname,
-            username : req.body.username,
-            password : req.body.password,
-            city : req.body.city,
-            email : req.body.email,
-            mobile : req.body.mobile
+            name: req.body.name,
+            place: req.body.place,
+            price: req.body.price,
+            image: req.body.image 
         })
 
-        const data = await user.save()
+        const data = await delhi.save()
 
         res.status(200).json({
-            msg:"User created successfully",
-            user: data
+            msg:" created successfully",
+            data: data
         })
     }catch(err){
         res.status(501).json({
@@ -69,13 +68,13 @@ exports.createuser = async (req,res) =>{
 }
 
 // 4. PUT/UPDATE for user method of CRUD
-exports.updateuser = async (req,res)=>{
+exports.updatedelhi = async (req,res)=>{
     try{
-       const user= await User.findByIdAndUpdate(req.params.productid,req.body)
+       const delhi= await Delhi.findByIdAndUpdate(req.params.productid,req.body)
 
        res.status(200).json({
-        msg:"User updated successfully",
-        user: user
+        msg:" updated successfully",
+        data : delhi
      })
     }catch(err){
         res.status(501).json({
@@ -86,13 +85,13 @@ exports.updateuser = async (req,res)=>{
 }
 
 // 5. DELET for user method of CRUD
-exports.deletuser = async (req,res)=>{
+exports.deletdelhi = async (req,res)=>{
     try{
-       const user= await User.findByIdAndDelete(req.params.productid)
+       const delhi= await Delhi.findByIdAndDelete(req.params.productid)
 
        res.status(200).json({
-        msg:"user deleted successfully",
-        user: user
+        msg:"deleted successfully",
+        data : delhi
      })
     }catch(err){
         res.status(501).json({
