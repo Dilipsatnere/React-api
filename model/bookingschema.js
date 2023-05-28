@@ -2,7 +2,7 @@
 const mongoose = require ('mongoose')
 const schema = mongoose.Schema
 
-const bookingschema = Schema({
+const bookingschema = schema({
     _id:schema.Types.ObjectId,
     city: {type:String,require:true},
     name: {type:String,require:true},
